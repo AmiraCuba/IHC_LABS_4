@@ -79,7 +79,8 @@ fun AppNavigation(
                 ?: Catalogo.reportesActivos.first()
             DuplicateScreen(
                 reporte = reporte,
-                onCrearNuevo = { navController.navigate(Rutas.DANO) }
+                onCrearNuevo = { navController.navigate(Rutas.DANO) },
+                onVolver = { navController.popBackStack(Rutas.SCAN, inclusive = false) }
             )
         }
 

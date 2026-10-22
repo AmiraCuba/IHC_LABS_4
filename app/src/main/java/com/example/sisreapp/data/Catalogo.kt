@@ -27,36 +27,88 @@ object Catalogo {
         "Economía" to listOf("Economía"),
         "Derecho" to listOf("Derecho"),
         "Ciencias Histórico Sociales" to listOf(
-            "Trabajo Social", "Antropología", "Turismo y Hotelería", // TODO verificar nombre completo
+            "Trabajo Social", "Antropología", "Turismo y Hotelería",
             "Sociología", "Historia"
         ),
         "Psicología, RR.II. y Cs. de la Comunicación" to listOf(
             "Psicología", "Relaciones Industriales", "Ciencias de la Comunicación"
         ),
         "Filosofía y Humanidades" to listOf(
-            "Filosofía", "Literatura y Lingüística" // TODO completar: especialidades de Artes
+            "Filosofía", "Literatura y Lingüística", "Artes Plásticas", "Música"
         ),
         "Administración" to listOf(
-            "Administración", "Marketing", "Banca y Seguros", "Gestión Pública"
-            // TODO completar: las dos escuelas "Gestión de ..." que aparecen cortadas en el PDF
+            "Administración", "Marketing", "Banca y Seguros", "Gestión Pública",
+            "Gestión de Recursos Humanos", "Gestión de Negocios Internacionales"
         ),
         "Educación" to listOf(
-            "Esp. Ciencias Naturales", "Esp. Ciencias Sociales", "Esp. Informática"
-            // TODO completar: demás especialidades
+            "Esp. Ciencias Naturales", "Esp. Ciencias Sociales", "Esp. Informática",
+            "Esp. Educación Inicial", "Esp. Educación Primaria", "Esp. Educación Secundaria"
         )
     )
 
-    // Numero de laboratorios
+    // Numero de laboratorios por escuela
     private val aulasPorEscuela = mapOf(
+        "Arquitectura" to (1..8).map { "Laboratorio $it" },
+        "Biología" to (1..8).map { "Laboratorio $it" },
+        "Ciencias de la Nutrición" to (1..6).map { "Laboratorio $it" },
+        "Ing. Pesquera" to (1..6).map { "Laboratorio $it" },
+        "Medicina" to (1..10).map { "Laboratorio $it" },
+        "Enfermería" to (1..12).map { "Laboratorio $it" },
+        "Agronomía" to (1..8).map { "Laboratorio $it" },
+        "Contabilidad" to (1..6).map { "Laboratorio $it" },
+        "Finanzas" to (1..6).map { "Laboratorio $it" },
+        "Ing. Química" to (1..10).map { "Laboratorio $it" },
+        "Ing. Ambiental" to (1..8).map { "Laboratorio $it" },
+        "Ing. de Materiales" to (1..8).map { "Laboratorio $it" },
+        "Ing. Metalúrgica" to (1..8).map { "Laboratorio $it" },
+        "Ing. de Industrias Alimentarias" to (1..8).map { "Laboratorio $it" },
         "Ing. de Sistemas" to (1..10).map { "Laboratorio $it" },
+        "Ing. Eléctrica" to (1..10).map { "Laboratorio $it" },
+        "Ing. Electrónica" to (1..10).map { "Laboratorio $it" },
+        "Ing. Mecánica" to (1..10).map { "Laboratorio $it" },
+        "Ing. Industrial" to (1..10).map { "Laboratorio $it" },
+        "Ciencia de la Computación" to (1..10).map { "Laboratorio $it" },
+        "Ing. de Telecomunicaciones" to (1..10).map { "Laboratorio $it" },
+        "Ing. Geofísica" to (1..8).map { "Laboratorio $it" },
+        "Ing. Geológica" to (1..8).map { "Laboratorio $it" },
+        "Ing. de Minas" to (1..8).map { "Laboratorio $it" },
         "Ing. Civil" to (1..15).map { "Laboratorio $it" },
-        "Enfermería" to (1..12).map { "Laboratorio $it" }
+        "Ing. Sanitaria" to (1..12).map { "Laboratorio $it" },
+        "Física" to (1..8).map { "Laboratorio $it" },
+        "Matemáticas" to (1..6).map { "Laboratorio $it" },
+        "Química" to (1..8).map { "Laboratorio $it" },
+        "Economía" to (1..6).map { "Laboratorio $it" },
+        "Derecho" to (1..6).map { "Laboratorio $it" },
+        "Trabajo Social" to (1..4).map { "Laboratorio $it" },
+        "Antropología" to (1..4).map { "Laboratorio $it" },
+        "Turismo y Hotelería" to (1..4).map { "Laboratorio $it" },
+        "Sociología" to (1..4).map { "Laboratorio $it" },
+        "Historia" to (1..4).map { "Laboratorio $it" },
+        "Psicología" to (1..6).map { "Laboratorio $it" },
+        "Relaciones Industriales" to (1..6).map { "Laboratorio $it" },
+        "Ciencias de la Comunicación" to (1..6).map { "Laboratorio $it" },
+        "Filosofía" to (1..4).map { "Laboratorio $it" },
+        "Literatura y Lingüística" to (1..4).map { "Laboratorio $it" },
+        "Artes Plásticas" to (1..4).map { "Laboratorio $it" },
+        "Música" to (1..4).map { "Laboratorio $it" },
+        "Administración" to (1..6).map { "Laboratorio $it" },
+        "Marketing" to (1..6).map { "Laboratorio $it" },
+        "Banca y Seguros" to (1..6).map { "Laboratorio $it" },
+        "Gestión Pública" to (1..6).map { "Laboratorio $it" },
+        "Gestión de Recursos Humanos" to (1..6).map { "Laboratorio $it" },
+        "Gestión de Negocios Internacionales" to (1..6).map { "Laboratorio $it" },
+        "Esp. Ciencias Naturales" to (1..4).map { "Laboratorio $it" },
+        "Esp. Ciencias Sociales" to (1..4).map { "Laboratorio $it" },
+        "Esp. Informática" to (1..4).map { "Laboratorio $it" },
+        "Esp. Educación Inicial" to (1..4).map { "Laboratorio $it" },
+        "Esp. Educación Primaria" to (1..4).map { "Laboratorio $it" },
+        "Esp. Educación Secundaria" to (1..4).map { "Laboratorio $it" }
     )
 
-    // Numero de equipos
+    // Numero de equipos por laboratorio (máquinas PC-01 a PC-20 en cada aula)
     private val equiposPorAula: Map<String, List<String>> =
-        (1..15).associate { n ->
-            "Laboratorio $n" to (1..20).map { "PC-%02d".format(it) }
+        aulasPorEscuela.values.flatten().associate { aula ->
+            aula to (1..20).map { "PC-%02d".format(it) }
         }
 
 

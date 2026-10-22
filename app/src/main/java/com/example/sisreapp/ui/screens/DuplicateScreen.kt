@@ -9,11 +9,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,14 +22,14 @@ import com.example.sisreapp.data.Catalogo
 import com.example.sisreapp.data.ReporteActivo
 import com.example.sisreapp.ui.components.*
 import com.example.sisreapp.ui.theme.*
-import kotlinx.coroutines.launch
 
 @Composable
-fun DuplicateScreen(reporte: ReporteActivo, onCrearNuevo: () -> Unit) {
-    val snackbar = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
-
-    ScreenContainer(snackbar) {
+fun DuplicateScreen(
+    reporte: ReporteActivo,
+    onCrearNuevo: () -> Unit,
+    onVolver: () -> Unit
+) {
+    ScreenContainer {
         AppHeader()
         Column(
             Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
@@ -84,10 +81,7 @@ fun DuplicateScreen(reporte: ReporteActivo, onCrearNuevo: () -> Unit) {
             }
         }
 
-        PrimaryButton("Ver este reporte", onClick = {
-            // Pantalla de detalle pendiente: por ahora solo da retroalimentación
-            scope.launch { snackbar.showSnackbar("Detalle del reporte #${reporte.ticket}: pantalla pendiente") }
-        })
+        PrimaryButton("No crear otro reporte", onClick = onVolver)
         LinkButton("Crear un reporte nuevo de todas formas", onCrearNuevo)
     }
 }
@@ -110,6 +104,6 @@ private fun CampoLectura(etiqueta: String, valor: String) {
 @Composable
 private fun DuplicatePreview() {
     SISREAppTheme {
-        DuplicateScreen(reporte = Catalogo.reportesActivos.first(), onCrearNuevo = {})
+        DuplicateScreen(reporte = Catalogo.reportesActivos.first(), onCrearNuevo = {}, onVolver = {})
     }
 }
