@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -43,13 +44,29 @@ fun ScreenContainer(
     }
 }
 
-/** Logo + nombre de la app (encabezado de cada pantalla). */
+/**
+ * Logo + nombre de la app (encabezado de cada pantalla).
+ * Si [onVolver] no es nulo se muestra una flecha para regresar al paso anterior.
+ */
 @Composable
-fun AppHeader() {
+fun AppHeader(onVolver: (() -> Unit)? = null) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(bottom = 20.dp)
     ) {
+        if (onVolver != null) {
+            IconButton(
+                onClick = onVolver,
+                // Compensa el relleno interno del IconButton para alinearlo con el margen
+                modifier = Modifier.offset(x = (-12).dp)
+            ) {
+                Icon(
+                    Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Volver al paso anterior",
+                    tint = Azul
+                )
+            }
+        }
         Image(
             painter = painterResource(R.drawable.logo_sisreapp),
             contentDescription = "Logo SISREApp",

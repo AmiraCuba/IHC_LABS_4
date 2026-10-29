@@ -27,10 +27,12 @@ import com.example.sisreapp.ui.theme.*
 fun DuplicateScreen(
     reporte: ReporteActivo,
     onCrearNuevo: () -> Unit,
-    onVolver: () -> Unit
+    onVolver: () -> Unit,
+    onAtras: () -> Unit
 ) {
     ScreenContainer {
-        AppHeader()
+        // La flecha regresa al paso anterior; "No crear otro reporte" vuelve al escaneo
+        AppHeader(onVolver = onAtras)
         Column(
             Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -104,6 +106,11 @@ private fun CampoLectura(etiqueta: String, valor: String) {
 @Composable
 private fun DuplicatePreview() {
     SISREAppTheme {
-        DuplicateScreen(reporte = Catalogo.reportesActivos.first(), onCrearNuevo = {}, onVolver = {})
+        DuplicateScreen(
+            reporte = Catalogo.reportesActivos.first(),
+            onCrearNuevo = {},
+            onVolver = {},
+            onAtras = {}
+        )
     }
 }

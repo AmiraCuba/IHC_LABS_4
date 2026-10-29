@@ -16,10 +16,11 @@ import com.example.sisreapp.ui.theme.*
 fun EquipmentFoundScreen(
     equipo: Equipo,
     onContinuar: () -> Unit,
-    onNoEsEquipo: () -> Unit
+    onNoEsEquipo: () -> Unit,
+    onVolver: () -> Unit
 ) {
     ScreenContainer {
-        AppHeader()
+        AppHeader(onVolver = onVolver)
         EstadoVerificado("Equipo encontrado")
         Spacer(Modifier.height(8.dp))
         DatosEquipo(equipo)
@@ -39,6 +40,11 @@ fun EquipmentFoundScreen(
 @Composable
 private fun EquipmentFoundPreview() {
     SISREAppTheme {
-        EquipmentFoundScreen(equipo = Catalogo.equipoDemo, onContinuar = {}, onNoEsEquipo = {})
+        EquipmentFoundScreen(
+            equipo = Catalogo.equipoDemo,
+            onContinuar = {},
+            onNoEsEquipo = {},
+            onVolver = {}
+        )
     }
 }

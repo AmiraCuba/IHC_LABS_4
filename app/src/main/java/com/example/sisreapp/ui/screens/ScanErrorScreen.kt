@@ -17,7 +17,7 @@ import com.example.sisreapp.ui.theme.*
 @Composable
 fun ScanErrorScreen(onReintentar: () -> Unit, onManual: () -> Unit) {
     ScreenContainer {
-        AppHeader()
+        AppHeader(onVolver = onReintentar)
         Column(
             Modifier.weight(1f).fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,

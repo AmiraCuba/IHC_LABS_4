@@ -66,12 +66,16 @@ fun AppNavigation(
             EquipmentFoundScreen(
                 equipo = vm.equipo ?: Catalogo.equipoDemo,
                 onContinuar = { continuarConEquipo(vm.equipo ?: Catalogo.equipoDemo) },
-                onNoEsEquipo = { navController.navigate(Rutas.MANUAL) }
+                onNoEsEquipo = { navController.navigate(Rutas.MANUAL) },
+                onVolver = { navController.popBackStack() }
             )
         }
 
         composable(Rutas.MANUAL) {
-            ManualScreen(onConfirmar = { continuarConEquipo(it) })
+            ManualScreen(
+                onConfirmar = { continuarConEquipo(it) },
+                onVolver = { navController.popBackStack() }
+            )
         }
 
         composable(Rutas.DUPLICADO) {
@@ -80,7 +84,8 @@ fun AppNavigation(
             DuplicateScreen(
                 reporte = reporte,
                 onCrearNuevo = { navController.navigate(Rutas.DANO) },
-                onVolver = { navController.popBackStack(Rutas.SCAN, inclusive = false) }
+                onVolver = { navController.popBackStack(Rutas.SCAN, inclusive = false) },
+                onAtras = { navController.popBackStack() }
             )
         }
 
@@ -89,7 +94,8 @@ fun AppNavigation(
                 equipo = vm.equipo ?: Catalogo.equipoDemo,
                 seleccionado = vm.dano,
                 onSeleccion = vm::seleccionarDano,
-                onRevisar = { navController.navigate(Rutas.REVISION) }
+                onRevisar = { navController.navigate(Rutas.REVISION) },
+                onVolver = { navController.popBackStack() }
             )
         }
 

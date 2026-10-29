@@ -30,10 +30,11 @@ fun DamageTypeScreen(
     equipo: Equipo,
     seleccionado: TipoDano?,
     onSeleccion: (TipoDano) -> Unit,
-    onRevisar: () -> Unit
+    onRevisar: () -> Unit,
+    onVolver: () -> Unit
 ) {
     ScreenContainer {
-        AppHeader()
+        AppHeader(onVolver = onVolver)
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) {
             // Resumen del equipo seleccionado
             Row(
@@ -115,7 +116,8 @@ private fun DamageTypePreview() {
             equipo = Catalogo.equipoDemo,
             seleccionado = TipoDano.TECLADO,
             onSeleccion = {},
-            onRevisar = {}
+            onRevisar = {},
+            onVolver = {}
         )
     }
 }

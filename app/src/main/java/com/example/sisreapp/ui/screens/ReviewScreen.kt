@@ -19,7 +19,7 @@ fun ReviewScreen(
     onCorregir: () -> Unit
 ) {
     ScreenContainer {
-        AppHeader()
+        AppHeader(onVolver = onCorregir)
         ScreenTitle("Revisa tu reporte", "Confirma los datos antes de enviar.")
         Spacer(Modifier.height(12.dp))
         DatosEquipo(equipo, dano)

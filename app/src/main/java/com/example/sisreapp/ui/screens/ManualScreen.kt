@@ -20,7 +20,7 @@ import com.example.sisreapp.ui.components.*
 import com.example.sisreapp.ui.theme.*
 
 @Composable
-fun ManualScreen(onConfirmar: (Equipo) -> Unit) {
+fun ManualScreen(onConfirmar: (Equipo) -> Unit, onVolver: () -> Unit) {
     var facultad by rememberSaveable { mutableStateOf<String?>(null) }
     var escuela by rememberSaveable { mutableStateOf<String?>(null) }
     var aula by rememberSaveable { mutableStateOf<String?>(null) }
@@ -37,7 +37,7 @@ fun ManualScreen(onConfirmar: (Equipo) -> Unit) {
     val equipoSeleccionado = if (f != null && e != null && a != null && c != null) Equipo(c, a, e, f) else null
 
     ScreenContainer {
-        AppHeader()
+        AppHeader(onVolver = onVolver)
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState())) {
             ScreenTitle("Identifica el equipo", "Úsalo si el código está dañado o no se puede escanear.")
             Spacer(Modifier.height(20.dp))
@@ -144,5 +144,5 @@ private fun CampoSelector(
 @Preview(showBackground = true, widthDp = 360, heightDp = 740)
 @Composable
 private fun ManualPreview() {
-    SISREAppTheme { ManualScreen(onConfirmar = {}) }
+    SISREAppTheme { ManualScreen(onConfirmar = {}, onVolver = {}) }
 }
